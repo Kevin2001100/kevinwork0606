@@ -1,0 +1,199 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    position: relative;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 2rem;
+    background: #f3f3f3;
+    padding: 8px 24px;
+    letter-spacing: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-icons {
+    display: flex;
+    gap: 24px;
+    font-size: 1.6rem;
+    color: #222;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+}
+
+.hamburger .bar {
+    height: 3px;
+    width: 100%;
+    background: #222;
+    margin: 3px 0;
+    border-radius: 2px;
+}
+
+/* 輪播區塊樣式 */
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0;
+}
+
+.carousel-slide {
+    display: none;
+    width: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+    display: block;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+.carousel-dots {
+    text-align: center;
+    margin-top: 0; /* 移除間距 */
+    margin-bottom: 16px;
+    width: 100%;
+    position: static; /* 讓 dots 跟著內容流動 */
+}
+
+.carousel-dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 6px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+
+.carousel-dot.active {
+    background: #333;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 24px auto;
+    max-width: 1200px;
+    width: 100%;
+}
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 12px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+.product-img-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+}
+.product-card img {
+    width: 100%;
+    max-width: 220px;
+    height: 180px;
+    object-fit: contain;
+    background: #f7f7f7;
+    border-radius: 4px;
+    display: block;
+}
+.product-tag {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    background: #222;
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-weight: bold;
+}
+.product-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #222;
+}
+.product-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+.product-price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+.product-price-old {
+    color: #aaa;
+    text-decoration: line-through;
+    font-size: 0.95rem;
+}
+.product-price {
+    color: #c00;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.hot-products {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 0 24px;
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}

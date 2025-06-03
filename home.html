@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>樂扣購物網站</title>
+    <link rel="stylesheet" href="hotme.css">
 </head>
 <body>
-    
+    <header class="main-header">
+        <div class="header-icons left">
+            <span class="icon hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </span>
+        </div>
+        <div class="logo">YCCT</div>
+        <div class="header-icons">
+            <span class="icon">&#128100;</span>
+            <span class="icon">&#128717;</span>
+        </div>
+    </header>
+
+    <!-- 商品輪播區塊開始 -->
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="img/cup1.png" alt="商品1">
+        </div>
+        <div class="carousel-slide">
+            <img src="img/cup2.png" alt="商品2">
+        </div>
+        <div class="carousel-slide">
+            <img src="img/cup3.png" alt="商品3">
+        </div>
+        <div class="carousel-dots">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+        </div>
+    </div>
+    <!-- 商品輪播區塊結束 -->
+
+    <!-- 產品頁面區塊開始 -->
+    <section class="hot-products">
+        <h2>熱門推薦</h2>
+        <div id="product-grid" class="products-grid"></div>
+    </section>
+    <!-- 產品頁面區塊結束 -->
+
+    <script>
+        // 輪播功能
+        let current = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        function showSlide(idx) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === idx);
+                dots[i].classList.toggle('active', i === idx);
+            });
+            current = idx;
+        }
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+        setInterval(() => {
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+        }, 3000);
+    </script>
+    <script src="products.js"></script>
 </body>
 </html>
