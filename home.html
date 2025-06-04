@@ -13,7 +13,7 @@
 <body>
     <header class="main-header">
         <div class="header-icons left">
-            <span class="icon hamburger">
+            <span class="icon hamburger" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -37,6 +37,44 @@
             </span>
         </div>
     </header>
+
+    <!-- 側邊選單 -->
+    <nav id="sidebarMenu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold" id="sidebarMenuLabel">
+          <i class="bi bi-list"></i> 主選單
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+      </div>
+      <div class="offcanvas-body px-0">
+        <ul class="list-group list-group-flush">
+          <li>
+            <a href="home.html" class="list-group-item list-group-item-action d-flex align-items-center py-3" data-bs-dismiss="offcanvas">
+              <i class="bi bi-house-door me-3 fs-5 text-primary"></i> 首頁
+            </a>
+          </li>
+          <li>
+            <a href="products.html" class="list-group-item list-group-item-action d-flex align-items-center py-3" data-bs-dismiss="offcanvas">
+              <i class="bi bi-box-seam me-3 fs-5 text-success"></i> 全部商品
+            </a>
+          </li>
+          <li>
+            <a href="register.html" class="list-group-item list-group-item-action d-flex align-items-center py-3" data-bs-dismiss="offcanvas">
+              <i class="bi bi-person-plus me-3 fs-5 text-warning"></i> 註冊/登入
+            </a>
+          </li>
+          <li><hr class="my-2"></li>
+          <li>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center py-3 disabled" tabindex="-1" aria-disabled="true">
+              <i class="bi bi-info-circle me-3 fs-5 text-secondary"></i> 客服中心（即將開放）
+            </a>
+          </li>
+        </ul>
+        <div class="text-center mt-4">
+          <small class="text-muted">© 2025 YCCT 購物網</small>
+        </div>
+      </div>
+    </nav>
 
     <!-- 商品輪播區塊開始 -->
     <div class="carousel-container">
@@ -178,5 +216,15 @@
         }
     });
     </script>
+
+<!-- Bootstrap 5 已經引入，以下 JS 讓點擊選單自動關閉 offcanvas（行動裝置體驗佳） -->
+<script>
+document.querySelectorAll('#sidebarMenu .list-group-item-action:not(.disabled)').forEach(function(link){
+  link.addEventListener('click', function(){
+    var sidebar = bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('sidebarMenu'));
+    sidebar.hide();
+  });
+});
+</script>
 </body>
 </html>
