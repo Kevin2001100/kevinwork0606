@@ -49,7 +49,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="input-group mb-2 quantity-group" style="width: 140px;">
                         <button class="btn btn-outline-secondary btn-qty-minus" type="button" data-idx="${idx}">-</button>
-                        <input type="number" min="1" value="1" class="form-control cart-qty-input text-center" data-idx="${idx}" style="max-width:48px;">
+                        <select class="form-select cart-qty-select text-center" data-idx="${idx}" style="max-width:60px;">
+                            ${[...Array(10)].map((_,i)=>`<option value="${i+1}">${i+1}</option>`).join('')}
+                        </select>
                         <button class="btn btn-outline-secondary btn-qty-plus" type="button" data-idx="${idx}">+</button>
                     </div>
                     <button class="btn btn-outline-primary mt-auto add-cart-btn" data-idx="${idx}">
@@ -67,37 +69,29 @@ window.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseleave', () => card.classList.remove('shadow-lg'));
     });
 
-    // 數量加減按鈕功能
+    // 數量加減按鈕功能（配合 select）
     document.querySelectorAll('.btn-qty-minus').forEach(btn => {
         btn.addEventListener('click', function() {
             const idx = this.getAttribute('data-idx');
-            const input = document.querySelector(`.cart-qty-input[data-idx="${idx}"]`);
-            let val = parseInt(input.value, 10) || 1;
-            if (val > 1) input.value = val - 1;
+            const select = document.querySelector(`.cart-qty-select[data-idx="${idx}"]`);
+            let val = parseInt(select.value, 10) || 1;
+            if (val > 1) select.value = val - 1;
         });
     });
     document.querySelectorAll('.btn-qty-plus').forEach(btn => {
         btn.addEventListener('click', function() {
             const idx = this.getAttribute('data-idx');
-            const input = document.querySelector(`.cart-qty-input[data-idx="${idx}"]`);
-            let val = parseInt(input.value, 10) || 1;
-            input.value = val + 1;
+            const select = document.querySelector(`.cart-qty-select[data-idx="${idx}"]`);
+            let val = parseInt(select.value, 10) || 1;
+            if (val < 10) select.value = val + 1;
         });
     });
 
-    // 禁止輸入小於1
-    document.querySelectorAll('.cart-qty-input').forEach(input => {
-        input.addEventListener('input', function() {
-            if (this.value === "" || parseInt(this.value, 10) < 1) this.value = 1;
-        });
-    });
-
-    // 加入購物車功能（改為 select 取值）
+    // 加入購物車功能
     document.querySelectorAll('.add-cart-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const idx = this.getAttribute('data-idx');
             const product = products[idx];
-            // 取得對應的 select
             const qtySelect = this.parentElement.querySelector('.cart-qty-select');
             let qty = parseInt(qtySelect.value, 10);
             if (isNaN(qty) || qty < 1) qty = 1;
@@ -111,22 +105,25 @@ window.addEventListener('DOMContentLoaded', () => {
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
+
+            // 動畫提示
             this.innerHTML = '<i class="bi bi-cart-check-fill"></i> 已加入';
             this.classList.remove('btn-outline-primary');
             this.classList.add('btn-success');
+            this.disabled = true;
             setTimeout(() => {
                 this.innerHTML = '<i class="bi bi-cart-plus"></i> 加入購物車';
                 this.classList.remove('btn-success');
                 this.classList.add('btn-outline-primary');
+                this.disabled = false;
             }, 1200);
         });
     });
 });
 
-// 新增這個函式於 products.js
+// 購物車徽章數量
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    // 計算所有商品的總數量
     const total = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
     const cartCount = document.getElementById('cart-count');
     if (cartCount) {
@@ -134,6 +131,4 @@ function updateCartCount() {
         cartCount.style.display = total > 0 ? 'inline-block' : 'none';
     }
 }
-
-// 頁面載入時同步顯示數量
 window.addEventListener('DOMContentLoaded', updateCartCount);
