@@ -196,6 +196,11 @@
 
     <button id="logout-btn" class="btn btn-link">登出</button>
 
+    <!-- 回頂部按鈕 -->
+<button id="backToTop" class="btn btn-primary rounded-circle shadow" style="position:fixed;bottom:32px;right:32px;z-index:999;display:none;width:48px;height:48px;font-size:1.5rem;">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       // 點擊會員圖示開啟註冊 Modal
@@ -304,5 +309,20 @@ document.querySelectorAll('#sidebarMenu .list-group-item-action:not(.disabled)')
         }
     });
     </script>
+    <!-- 顯示/隱藏回頂部按鈕 -->
+<script>
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('backToTop');
+        if(window.scrollY > 200){
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
+    });
+    // 點擊平滑滾動回頂部
+    document.getElementById('backToTop').onclick = function() {
+        window.scrollTo({top:0, behavior:'smooth'});
+    };
+</script>
 </body>
 </html>
