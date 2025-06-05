@@ -546,9 +546,7 @@ document.getElementById('checkout-form').addEventListener('submit', function(e) 
           window.location.reload();
       };
 
-      document.getElementById('cart-icon').addEventListener('click', function() {
-    window.location.href = 'cart.html';
-});
+
     </script>
     <script>
     window.addEventListener('DOMContentLoaded', function() {
@@ -611,5 +609,13 @@ document.querySelectorAll('#sidebarMenu .list-group-item-action:not(.disabled)')
         }
     });
     </script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    // 購物車 icon 點擊跳轉
+    document.getElementById('cart-icon').onclick = function() {
+        window.location.href = 'cart.html';
+    };
+});
+</script>
 </body>
 </html>
