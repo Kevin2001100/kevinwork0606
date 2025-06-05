@@ -22,7 +22,7 @@ const products = [
     { img: "img/p4.webp", title: "商品6", price: "NT$1,160" },
     { img: "img/p5.webp", title: "商品7", price: "NT$1,140" },
     { img: "img/p6.webp", title: "商品8", price: "NT$1,120" },
-    { img: "img/p7.webp", title: "商品9", price: "NT$1,100" },
+    { img: "img/p6.webp", title: "商品9", price: "NT$1,100" },
     { img: "img/p8.webp", title: "商品10", price: "NT$1,080" },
     { img: "img/p9.webp", title: "商品11", price: "NT$1,060" },
     { img: "img/p10.webp", title: "商品12", price: "NT$1,040" }
