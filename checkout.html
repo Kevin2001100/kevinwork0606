@@ -31,75 +31,124 @@
             <h2 class="mb-4 fw-bold text-primary"><i class="bi bi-credit-card me-2"></i>結帳</h2>
             <div id="checkout-cart"></div>
             <hr>
-            <form id="checkout-form" class="mt-4">
-                <h5 class="mb-3 fw-bold">選擇付款/取貨方式</h5>
+            <form id="checkout-form" class="mt-4 needs-validation" novalidate>
                 <div class="row g-4 mb-3">
-                    <div class="col-md-4">
-                        <div class="pay-card h-100 p-3 border rounded-4 position-relative">
-                            <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payCard" value="信用卡" checked>
-                            <label class="form-check-label w-100" for="payCard" style="cursor:pointer;">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="bi bi-credit-card-2-front fs-4 me-2 text-primary"></i>
-                                    <span class="fw-bold">信用卡</span>
-                                </div>
-                                <div class="pay-fields" id="card-fields">
-                                    <input type="text" class="form-control mb-2" placeholder="卡號 (16碼)" maxlength="16" pattern="\d{16}">
-                                    <input type="text" class="form-control mb-2" placeholder="持卡人姓名">
-                                    <div class="row g-2">
-                                        <div class="col">
-                                            <input type="text" class="form-control" placeholder="MM/YY" maxlength="5">
+                    <!-- 購買人資訊 -->
+                    <div class="col-12 col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-person-badge me-2"></i>購買人資訊</h5>
+                            <div class="mb-3">
+                                <label for="buyerName" class="form-label">姓名 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="buyerName" name="buyerName" placeholder="請輸入姓名" required>
+                                <div class="invalid-feedback">請輸入姓名</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="buyerPhone" class="form-label">電話 <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="buyerPhone" name="buyerPhone" placeholder="請輸入電話" pattern="^09\d{8}$" required>
+                                <div class="invalid-feedback">請輸入正確的手機號碼（09開頭，共10碼）</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="buyerAddress" class="form-label">住址 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="buyerAddress" name="buyerAddress" placeholder="請輸入住址" required>
+                                <div class="invalid-feedback">請輸入住址</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 付款/取貨方式 -->
+                    <div class="col-12 col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-credit-card-2-front me-2"></i>付款/取貨方式</h5>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="row g-4">
+                                        <div class="col-md-12">
+                                            <div class="pay-card h-100 p-3 border rounded-4 position-relative">
+                                                <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payCard" value="信用卡" checked>
+                                                <label class="form-check-label w-100" for="payCard" style="cursor:pointer;">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="bi bi-credit-card-2-front fs-4 me-2 text-primary"></i>
+                                                        <span class="fw-bold">信用卡</span>
+                                                    </div>
+                                                    <div class="pay-fields" id="card-fields">
+                                                        <input type="text" class="form-control mb-2" placeholder="卡號 (16碼)" maxlength="16" pattern="\d{16}">
+                                                        <input type="text" class="form-control mb-2" placeholder="持卡人姓名">
+                                                        <div class="row g-2">
+                                                            <div class="col">
+                                                                <input type="text" class="form-control" placeholder="MM/YY" maxlength="5">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="text" class="form-control" placeholder="CVC" maxlength="3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control" placeholder="CVC" maxlength="3">
+                                        <div class="col-md-12">
+                                            <div class="pay-card h-100 p-3 border rounded-4 position-relative">
+                                                <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payBank" value="銀行轉帳">
+                                                <label class="form-check-label w-100" for="payBank" style="cursor:pointer;">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="bi bi-bank fs-4 me-2 text-success"></i>
+                                                        <span class="fw-bold">銀行轉帳</span>
+                                                    </div>
+                                                    <div class="pay-fields d-none" id="bank-fields">
+                                                        <div class="text-secondary small">請於下單後三日內轉帳至：</div>
+                                                        <div class="fw-bold">銀行：004 台灣銀行<br>帳號：12345678901234</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="pay-card h-100 p-3 border rounded-4 position-relative">
+                                                <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payStore" value="超商取貨">
+                                                <label class="form-check-label w-100" for="payStore" style="cursor:pointer;">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="bi bi-shop fs-4 me-2 text-warning"></i>
+                                                        <span class="fw-bold">超商取貨付款</span>
+                                                    </div>
+                                                    <!-- 超商取貨付款區塊 -->
+                                                    <div class="pay-fields d-none" id="store-fields">
+                                                        <select class="form-select mb-2" id="store-type-select">
+                                                            <option selected disabled>選擇超商</option>
+                                                            <option value="7-11">7-11</option>
+                                                            <option value="全家">全家</option>
+                                                            <option value="萊爾富">萊爾富</option>
+                                                            <option value="OK超商">OK超商</option>
+                                                        </select>
+                                                        <select class="form-select mb-2" id="store-county-select" disabled>
+                                                            <option selected disabled>請先選擇超商</option>
+                                                        </select>
+                                                        <select class="form-select mb-2" id="store-town-select" disabled>
+                                                            <option selected disabled>請先選擇縣市</option>
+                                                        </select>
+                                                        <select class="form-select mb-2" id="store-branch-select" disabled>
+                                                            <option selected disabled>請先選擇地區</option>
+                                                        </select>
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="pay-card h-100 p-3 border rounded-4 position-relative">
-                            <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payBank" value="銀行轉帳">
-                            <label class="form-check-label w-100" for="payBank" style="cursor:pointer;">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="bi bi-bank fs-4 me-2 text-success"></i>
-                                    <span class="fw-bold">銀行轉帳</span>
-                                </div>
-                                <div class="pay-fields d-none" id="bank-fields">
-                                    <div class="text-secondary small">請於下單後三日內轉帳至：</div>
-                                    <div class="fw-bold">銀行：004 台灣銀行<br>帳號：12345678901234</div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pay-card h-100 p-3 border rounded-4 position-relative">
-                            <input class="form-check-input position-absolute top-0 end-0 m-3" type="radio" name="payType" id="payStore" value="超商取貨">
-                            <label class="form-check-label w-100" for="payStore" style="cursor:pointer;">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="bi bi-shop fs-4 me-2 text-warning"></i>
-                                    <span class="fw-bold">超商取貨付款</span>
-                                </div>
-                                <!-- 超商取貨付款區塊 -->
-                                <div class="pay-fields d-none" id="store-fields">
-                                    <select class="form-select mb-2" id="store-type-select">
-                                        <option selected disabled>選擇超商</option>
-                                        <option value="7-11">7-11</option>
-                                        <option value="全家">全家</option>
-                                        <option value="萊爾富">萊爾富</option>
-                                        <option value="OK超商">OK超商</option>
-                                    </select>
-                                    <select class="form-select mb-2" id="store-county-select" disabled>
-                                        <option selected disabled>請先選擇超商</option>
-                                    </select>
-                                    <select class="form-select mb-2" id="store-town-select" disabled>
-                                        <option selected disabled>請先選擇縣市</option>
-                                    </select>
-                                    <select class="form-select mb-2" id="store-branch-select" disabled>
-                                        <option selected disabled>請先選擇地區</option>
-                                    </select>
-                                </div>
-                            </label>
+                </div>
+                <!-- 小計與同意條款 -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="bg-light rounded-4 p-3 d-flex flex-column flex-md-row align-items-md-center justify-content-between shadow-sm">
+                            <div class="fs-5 fw-bold mb-2 mb-md-0">
+                                小計：<span id="checkout-subtotal" class="text-danger">NT$0</span>
+                            </div>
+                            <div class="form-check ms-md-3">
+                                <input class="form-check-input" type="checkbox" id="agreeCheck" required>
+                                <label class="form-check-label" for="agreeCheck">
+                                    我已閱讀並同意 <a href="#" target="_blank" class="text-decoration-underline">購買條款</a>
+                                </label>
+                                <div class="invalid-feedback">請勾選同意購買條款</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,6 +195,11 @@
     .pay-fields input, .pay-fields select {
         border-radius: 12px;
     }
+    .card {
+        border-radius: 1.5rem;
+        border: none;
+        background: #f8fafc;
+    }
     /* 步驟條 */
     .step-circle {
         width: 38px; height: 38px;
@@ -174,6 +228,9 @@
     @media (max-width: 600px) {
         .pay-card { padding: 1rem !important; }
         .step-circle { width: 28px; height: 28px; font-size: 1rem; }
+        .card { padding: 1rem !important; }
+        .rounded-4 { border-radius: 1rem !important; }
+        .btn-gradient { font-size: 1rem !important; padding: 0.7rem 1.5rem !important; }
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -224,9 +281,12 @@ function renderCheckoutCart() {
             </tbody>
         </table>
     </div>
-    <div class="text-end fs-5 fw-bold mt-3">總金額：<span class="text-danger">NT$${total.toLocaleString()}</span></div>
+    <div class="text-end fs-5 fw-bold mt-3">總金額：<span class="text-danger" id="checkout-subtotal">NT$${total.toLocaleString()}</span></div>
     `;
     cartDiv.innerHTML = html;
+    // 更新小計
+    const subtotalSpan = document.getElementById('checkout-subtotal');
+    if(subtotalSpan) subtotalSpan.textContent = `NT$${total.toLocaleString()}`;
 }
 window.addEventListener('DOMContentLoaded', renderCheckoutCart);
 
@@ -263,17 +323,11 @@ const storeCountySelect = document.getElementById('store-county-select');
 const storeTownSelect = document.getElementById('store-town-select');
 const storeBranchSelect = document.getElementById('store-branch-select');
 
-let allStores = []; // 全部門市資料
+let allStores = [];
 
-// 當選擇超商時，動態載入門市資料
-storeTypeSelect.addEventListener('change', async function() {
-    // 取得該品牌所有門市
+storeTypeSelect.addEventListener('change', function() {
     const brand = this.value;
-    // 這裡請換成你自己的 API
-    const res = await fetch(`https://api.example.com/convenience-stores?brand=${encodeURIComponent(brand)}`);
-    allStores = await res.json();
-
-    // 產生縣市選單
+    allStores = storeData.filter(s => s.brand === brand);
     const counties = [...new Set(allStores.map(s => s.county))];
     storeCountySelect.innerHTML = `<option selected disabled>選擇縣市</option>` + counties.map(c=>`<option>${c}</option>`).join('');
     storeCountySelect.disabled = false;
@@ -297,8 +351,14 @@ storeTownSelect.addEventListener('change', function() {
     storeBranchSelect.disabled = false;
 });
 
-// 結帳送出
+// 表單驗證與送出
 document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    if (!this.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.classList.add('was-validated');
+        return;
+    }
     e.preventDefault();
     alert('感謝您的訂購！訂單已成立。');
     localStorage.removeItem('cart');
