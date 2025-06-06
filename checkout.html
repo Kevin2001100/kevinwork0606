@@ -397,15 +397,18 @@
 function renderCheckoutCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('checkout-cart');
+    let total = 0;
     if (cart.length === 0) {
         cartDiv.innerHTML = `
             <div class="alert alert-info text-center">
                 <i class="bi bi-cart-x fs-1"></i><br>您的購物車是空的
             </div>`;
         document.getElementById('checkout-form').style.display = 'none';
+        // 更新下方小計為 0
+        const subtotalSpan = document.getElementById('checkout-subtotal');
+        if(subtotalSpan) subtotalSpan.textContent = 'NT$0';
         return;
     }
-    let total = 0;
     let html = `
     <div class="table-responsive">
         <table class="table align-middle bg-white rounded-3 shadow-sm">
@@ -440,10 +443,10 @@ function renderCheckoutCart() {
             </tbody>
         </table>
     </div>
-    <div class="text-end fs-5 fw-bold mt-3">總金額：<span class="text-danger" id="checkout-subtotal">NT$${total.toLocaleString()}</span></div>
+    <div class="text-end fs-5 fw-bold mt-3">總金額：<span class="text-danger">NT$${total.toLocaleString()}</span></div>
     `;
     cartDiv.innerHTML = html;
-    // 更新小計
+    // 更新下方小計
     const subtotalSpan = document.getElementById('checkout-subtotal');
     if(subtotalSpan) subtotalSpan.textContent = `NT$${total.toLocaleString()}`;
 }
@@ -617,7 +620,6 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 });
 </script>
-<!-- ...existing code... -->
 <!-- 顯示/隱藏回頂部按鈕 -->
 <script>
     window.addEventListener('scroll', function() {
