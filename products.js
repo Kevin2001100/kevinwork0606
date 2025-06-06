@@ -1,7 +1,7 @@
 // 產品資料
 const products = [
     {
-        img: "/img/p1.webp",
+        img: "./img/p1.webp",
         tag: "特價",
         title: "【貓咪柴犬2杯2袋組】速吸杯二代",
         desc: "900ml+720ml+飲料提袋包覆款和輕巧款",
@@ -9,7 +9,7 @@ const products = [
         price: "NT$1,799"
     },
     {
-        img: "/img/p2.webp",
+        img: "./img/p2.webp",
         tag: "熱銷",
         title: "【速吸杯二代】",
         desc: "1200ml (內膽陶瓷層) - 柴犬/貓咪",
@@ -17,7 +17,7 @@ const products = [
         price: "NT$1,500"
     },
     {
-        img: "/img/p3.webp",
+        img: "./img/p3.webp",
         tag: "特價",
         title: "【媽祖1杯1袋組】蓋賀杯",
         desc: "700ml+飲料提袋高大款",
@@ -25,7 +25,7 @@ const products = [
         price: "NT$799"
     },
      {
-        img: "/img/p4.webp",
+        img: "./img/p4.webp",
         tag: "特價",
         title: "【速吸杯二代】+【蓋賀杯】",
         desc: "900ml+700ml+飲料提袋包覆款和高大款",
@@ -33,7 +33,7 @@ const products = [
         price: "NT$1,499"
     },
      {
-        img: "/img/p5.webp",
+        img: "./img/p5.webp",
         tag: "特價",
         title: "【速吸杯二代】",
         desc: "1200ml (內膽陶瓷層) - 龍",
@@ -42,7 +42,7 @@ const products = [
     },
 
      {
-        img: "/img/p6.webp",
+        img: "./img/p6.webp",
         tag: "特價",
         title: "【蓋賀杯】",
         desc: "700ml - 微醺粉",
@@ -51,7 +51,7 @@ const products = [
     },
     
      {
-        img: "/img/p7.webp",
+        img: "./img/p7.webp",
         tag: "特價",
         title: "【速吸杯二代】",
         desc: "900ml (內膽陶瓷層) - 大象",
@@ -60,7 +60,7 @@ const products = [
     },
 
      {
-        img: "/img/p8.webp",
+        img: "./img/p8.webp",
         tag: "特價",
         title: "【啵啵杯】",
         desc: "710ml-2入組",
