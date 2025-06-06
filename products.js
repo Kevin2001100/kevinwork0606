@@ -50,6 +50,24 @@ const products = [
         price: "NT$1,180"
     },
     
+     {
+        img: "img/p7.webp",
+        tag: "特價",
+        title: "【速吸杯二代】",
+        desc: "900ml (內膽陶瓷層) - 大象",
+        priceOld: "NT$2,160",
+        price: "NT$1,960"
+    },
+
+     {
+        img: "img/p8.webp",
+        tag: "特價",
+        title: "【啵啵杯】",
+        desc: "710ml-2入組",
+        priceOld: "NT$1320",
+        price: "NT$1,120"
+    },
+    
     
     
 ];
